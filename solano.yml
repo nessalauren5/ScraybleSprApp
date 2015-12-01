@@ -1,0 +1,6 @@
+java:
+  java_version: java-8-oracle
+  maven_version: '3.3.9'	# See our Java documentation for versions
+tests:
+  - 'mvn clean package'
+  - mvn verify
