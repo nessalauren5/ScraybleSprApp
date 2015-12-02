@@ -28,8 +28,22 @@ public class ScraybleController {
 		Patient p = new Patient("Patient", "", null, new Name("Patient", "Bill"),
 				new Address("home", "123 Alzheimers Lane", "Atlanta", "GA", "90210"),
 				"male", "2015-12-01", true);
-		String billId = GaTechProxy.post(p);
+		
+		String billId = "";
+		try {
+			billId = GaTechProxy.post(p);
+			log.debug("Bill ID: " + billId);
+				
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			log.error(e.getStackTrace());
+		}
+		if(billId.equalsIgnoreCase("")) { return; }
+		
+		//Update patient
 		p.setId(billId);
+		
+		//Create Patient History
 		PatientHistory ph = new PatientHistory(billId);
 		ph.setEmployer("Georgia Tech");
 		ph.setEmergencyContact("Mark Braunstein");
@@ -47,14 +61,17 @@ public class ScraybleController {
 		ph.setEmergencyContactRelation("Friend");
 		ph.setLastHomeVisit("2015-12-01");
 		p.setPatientHistory(ph);
-		System.out.println("Bill ID: " + billId);
+		
+		//Update Users
 		users.put(billId, new User("Bill", "Bill Patient", "Bill", "Patient"));
+		
+		//Update Patients
 		patients.put(billId, p);
 		
 		//Associate Bill the user with Bill the Patient.
 		p.setUser(users.get("Bill"));
 		
-		//Associate Bill with his Care Plan.
+		//Create Care Plan
 		CarePlan cp = new CarePlan(p);//carePlans.get("CarePlan"+billId);
 		cp.setPhysician("Peter Primary");
 		cp.setHomeHealthAide("Sally Aide");
@@ -65,6 +82,7 @@ public class ScraybleController {
 		cp.setHomeExerciseProgram(true);
 		cp.setNotes("Bill You're Doing Great!");
 		
+		//Update Care Plans
 		carePlans.put("CarePlan" + billId, cp);
 	}
 
