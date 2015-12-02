@@ -230,13 +230,10 @@
     $( document ).ready(function() {
       var patient = $.ajax({
       method: "GET",
-      url: "http://localhost:8080/Patient/1",
-      dataType: 'jsonp'
+      url: "http://ec2-54-172-133-170.compute-1.amazonaws.com:8080/Patient/1",
+      dataType: 'json'
         }).always(function(data){
-          console.log(data);
-//          var p = $.parseJSON(data);
-//          console.log(p.user);
-//          $('#name').append(p.user);
+          $('#name').html(data.name[0].given[0] + " " + data.name[0].family[0]);
         });
     });
 
