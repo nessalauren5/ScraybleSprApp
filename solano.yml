@@ -3,4 +3,3 @@ java:
   maven_version: '3.3.9'
 tests:
   - 'mvn clean package'
-  - mvn verify
