@@ -1,11 +1,17 @@
 package Entities;
 
-public class Reference extends Entity {
+import org.json.JSONObject;
+
+public class Reference {
 
 	private static final String REFERENCE = "reference";
+	private JSONObject entity;
 
 	public Reference(String reference) {
-		super(REFERENCE, null, null);
 		entity.put(REFERENCE, reference);
+	}
+	
+	public JSONObject getJSONObject() {
+		return entity;
 	}
 }

@@ -61,27 +61,23 @@ public class GaTechProxy {
 	}
 	
 	public static String post(Entity entity) {
-		//StringBuilder sb = new StringBuilder();
 		String id = "";
 		try {
-		    StringEntity se = new StringEntity(entity.getJSONObject().toString());
+			String bodyOfPost = entity.getJSONObject().toString();
+		    StringEntity se = new StringEntity(bodyOfPost);
+		    log.info("Body of Post: " + bodyOfPost);
 			HttpClient httpClient = HttpClientBuilder.create().build();
 			String url = postURL(entity.getResourceType());
 		    HttpPost httpPost = new HttpPost(url);
 		    httpPost.setEntity(se);
 		    httpPost.setHeader("Content-type", "application/json");
 			HttpResponse response = httpClient.execute(httpPost);
-//		    for (Header header : response.getAllHeaders()) {
-//				sb.append(header.getName()).append(" ").append(header.getValue()).append(" ");
-//			}
 		    id =  response.getHeaders("Location")[0].getValue().replace("http://polaris.i3l.gatech.edu:8080/gt-fhir-webapp/base/"+entity.getResourceType()+"/", "");
-		    //sb.append("ID: ").append(id);
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		//return sb.toString();
 		return id;
 	}
 	

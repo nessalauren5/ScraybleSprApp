@@ -29,7 +29,7 @@ public class Patient extends Entity {
 	}
 	
 	public Patient(String json) {
-		super(null, null, json);	
+		super(null, null, json);
 	}
 
 	public void sync(Patient patientFromFHIR) {
