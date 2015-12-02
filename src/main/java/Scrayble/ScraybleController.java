@@ -1,6 +1,8 @@
 package Scrayble;
 
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -70,18 +72,21 @@ public class ScraybleController {
 		initializeDummyData();
 	}
 
+	@CrossOrigin
 	@RequestMapping(value = "/user/login", method=RequestMethod.GET)
 	public String userLogin() {
 		log.info("GET RequestMapping: /user/login");
     	return "User Login";
     }
 
+	@CrossOrigin
     @RequestMapping(value = "/user/logout", method=RequestMethod.GET)
 	public String userLogout() {
 		log.info("GET RequestMapping: /user/logout");
     	return "User Logout";
     }
 
+	@CrossOrigin
     @RequestMapping(value = "/user/{Id}", method=RequestMethod.GET)
 	public String getUserById(@PathVariable("Id") String id) {
 		log.info("GET RequestMapping: /user/"+id);
@@ -92,54 +97,63 @@ public class ScraybleController {
     	return "{}";
     }
 
+	@CrossOrigin
     @RequestMapping(value = "/user/{Id}", method=RequestMethod.POST)
 	public String updateUserById(@PathVariable("Id") String id) {
 		log.info("POST RequestMapping: /user/"+id);
     	return "Update User By User ID";
     }
 
+	@CrossOrigin
     @RequestMapping(value = "/user/{Id}", method=RequestMethod.DELETE)
 	public String deleteUserByName(@PathVariable("Id") String id) {
 		log.info("DELETE RequestMapping: /user/"+id);
     	return "Delete User By User ID";
     }
 
+	@CrossOrigin
     @RequestMapping(value = "/Condition/{Id}", method=RequestMethod.GET)
 	public String getCondition(@PathVariable("Id") String id) {
 		log.info("GET RequestMapping: /Condition/"+id);
     	return "Condition: " + id;
     }
 
+	@CrossOrigin
     @RequestMapping(value = "/Encounter/{Id}", method=RequestMethod.GET)
 	public String getEncounter(@PathVariable("Id") String id) {
 		log.info("GET RequestMapping: /Encounter/"+id);
     	return "Encounter: " + id;
     }
 
+	@CrossOrigin
     @RequestMapping(value = "/Medication/{Id}", method=RequestMethod.GET)
 	public String getMedication(@PathVariable("Id") String id) {
 		log.info("GET RequestMapping: /Medication/"+id);
     	return "Medication: " + id;
     }
 
+	@CrossOrigin
     @RequestMapping(value = "/MedicationDispense/{Id}", method=RequestMethod.GET)
 	public String getMedicationDispense(@PathVariable("Id") String id) {
 		log.info("GET RequestMapping: /MedicationDispense/"+id);
     	return "MedicationDispense: " + id;
     }
 
+	@CrossOrigin
     @RequestMapping(value = "/MedicationPrescription/{Id}", method=RequestMethod.GET)
 	public String getMedicationPrescription(@PathVariable("Id") String id) {
     	log.info("GET RequestMapping: /MedicationPrescription/"+id);
     	return "MedicationPrescription: " + id;
     }
 
+	@CrossOrigin
     @RequestMapping(value = "/Observation/{Id}", method=RequestMethod.GET)
 	public String getObservation(@PathVariable("Id") String id) {
     	log.info("GET RequestMapping: /Observation/"+id);
     	return "Observation: " + id;
     }
 
+	@CrossOrigin
     @RequestMapping(value = "/Patient/{Id}", method=RequestMethod.GET)
 	public String getPatient(@PathVariable("Id") String id) {
     	log.info("GET RequestMapping: /Patient/"+id);
@@ -158,6 +172,7 @@ public class ScraybleController {
        	return patientFromFHIR.getJSONObject().toString();
     }
 
+	@CrossOrigin
     @RequestMapping(value = "/PatientHistory/{Id}", method=RequestMethod.GET)
 	public String getPatientHistory(@PathVariable("Id") String id) {
     	log.info("GET RequestMapping: /PatientHistory/"+id);
@@ -168,6 +183,7 @@ public class ScraybleController {
        	return "{}";
     }
 
+	@CrossOrigin
     @RequestMapping(value = "/Patient/{Id}/CarePlan", method=RequestMethod.GET)
 	public String getPatientCarePlan(@PathVariable("Id") String id) {
     	log.info("GET RequestMapping: /CarePlan/"+id);
@@ -178,12 +194,14 @@ public class ScraybleController {
     	return "{}";
     }
 
+	@CrossOrigin
     @RequestMapping(value = "/PatientHistory", method=RequestMethod.POST)
 	public @ResponseBody PatientHistory createPatientHistory(PatientHistory ph, int patientId) {
     	log.info("POST RequestMapping: /PatientHistory");
     	return ph;
     }
     
+	@CrossOrigin
     @RequestMapping(value = "/CarePlan", method=RequestMethod.POST)
 	public @ResponseBody CarePlan createPatient(CarePlan cp, int patientId) {
     	log.info("POST RequestMapping: /CarePlan");
