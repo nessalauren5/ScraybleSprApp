@@ -5,6 +5,8 @@ import org.json.JSONObject;
 
 public class Name {
 
+	private static final String GIVEN = "given";
+	private static final String FAMILY = "family";
 	private JSONArray name;
 
 	public Name(String family, String given) {
@@ -13,28 +15,12 @@ public class Name {
 		ga.put(given);
 		name = new JSONArray();
 		JSONObject nameO = new JSONObject();
-		nameO.put("family", family);
-		nameO.put("given", ga);
+		nameO.put(FAMILY, family);
+		nameO.put(GIVEN, ga);
 		name.put(nameO);
 	}
 	
 	public JSONArray getJSONObject() {
 		return name;
 	}
-
-//	public JSONArray getGiven() {
-//		return given;
-//	}
-//
-//	public void setGiven(JSONArray given) {
-//		this.given = given;
-//	}
-//
-//	public JSONArray getFamily() {
-//		return family;
-//	}
-//
-//	public void setFamily(JSONArray family) {
-//		this.family = family;
-//	}
 }

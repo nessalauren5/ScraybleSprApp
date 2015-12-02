@@ -1,23 +1,14 @@
 package Entities;
 
-public class Quantity {
+public class Quantity extends Entity {
 
-	private double value;
-	private String units;
+	private static final String UNITS = "units";
+	private static final String VALUE = "value";
+	private static final String QUANTITY = "Quantity";
 
 	public Quantity(double value, String units) {
-		this.value = value;
-		this.units = units;
+		super(QUANTITY, null, null);
+		entity.put(VALUE, value);
+		entity.put(UNITS, units);
 	}
-
-	public String prettyPrint() {
-		return "Value: " + this.value
-			+ " Units: " + this.units;
-	};
-
-	public String jsonPrint() {
-		return "{ value: " + this.value
-				+ ", " + "units: " + this.units
-				+ "}";
-	};
 }

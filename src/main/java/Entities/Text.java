@@ -1,23 +1,14 @@
 package Entities;
 
-public class Text {
+public class Text extends Entity {
 
-	private String status;
-	private String div;
+	private static final String DIV = "div";
+	private static final String STATUS = "status";
+	private static final String TEXT = "Text";
 
 	public Text(String status, String div) {
-		this.status = status;
-		this.div = div;
+		super(TEXT, null, null);
+		entity.put(STATUS, status);
+		entity.put(DIV, div);
 	}
-
-	public String prettyPrint() {
-		return "Status: " + this.status
-		+ " Div: " + this.div;
-	};
-
-	public String jsonPrint() {
-		return "{ status: " + this.status
-				+ ", " + "div: " + this.div
-				+ "}";
-	};
 }

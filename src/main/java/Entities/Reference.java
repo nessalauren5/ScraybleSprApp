@@ -1,19 +1,11 @@
 package Entities;
 
-public class Reference {
+public class Reference extends Entity {
 
-	private String reference;
-	
+	private static final String REFERENCE = "reference";
+
 	public Reference(String reference) {
-		this.reference = reference;
+		super(REFERENCE, null, null);
+		entity.put(REFERENCE, reference);
 	}
-	
-	public String prettyPrint() {
-		return "Reference: " + this.reference;
-	};
-
-	public String jsonPrint() {
-		return "{ reference: " + this.reference
-				+ "}";
-	};
 }

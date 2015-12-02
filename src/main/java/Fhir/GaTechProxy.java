@@ -15,6 +15,9 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.json.JSONObject;
 
 import Entities.Entity;
+import Scrayble.ScraybleController;
+
+import org.apache.log4j.Logger;
 
 public class GaTechProxy {
 
@@ -26,12 +29,15 @@ public class GaTechProxy {
 	private static String mainApp = "gt-fhir-webapp";
 	private static String base = "base";
 	private static String jsonFormat = "?_format=json";
+	private static Logger log = Logger.getLogger(GaTechProxy.class.getName());
 	
 	public static String get(String resourceType, String id) {
-		StringBuilder sb = new StringBuilder();
+		log.info("Get Request to GATech FHIR.");
 		try {
+			StringBuilder sb = new StringBuilder();
 			HttpClient httpClient = HttpClientBuilder.create().build();
 			String url = getURL(resourceType, id);
+			log.info("GATech FHIR URL: "+url);
 			HttpGet getRequest = new HttpGet(url);
 			getRequest.setHeader("Accept", "application/json");
 			getRequest.setHeader("Content-Type", "application/json+fhir");
@@ -41,12 +47,17 @@ public class GaTechProxy {
 			while ((output = br.readLine()) != null) {
 				sb.append(output);
 			}
+			return sb.toString();
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
+			log.error(e.getMessage());
+			log.error(e.getStackTrace());
 		} catch (IOException e) {
 			e.printStackTrace();
+			log.error(e.getMessage());
+			log.error(e.getStackTrace());
 		}
-		return sb.toString();
+		return "";
 	}
 	
 	public static String post(Entity entity) {

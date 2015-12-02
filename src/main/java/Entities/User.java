@@ -2,43 +2,29 @@ package Entities;
 
 public class User extends Entity {
 
+	private static final String USER_TYPE = "userType";
+	private static final String USER_PASSWORD = "userPassword";
+	private static final String USER_FULL_NAME = "userFullName";
+	private static final String USER_NAME = "userName";
+	private static final String USER = "User";
+	
 	public User(String userName, String userFullName, String userPassword, String userType) {
-		super("User", null, null);
-		entity.put("userName", userName);
-		entity.put("userFullName", userFullName);
-		entity.put("userPassword", userPassword);
-		entity.put("userType", userType);
+		super(USER, userName, null);
+		entity.put(USER_NAME, userName);
+		entity.put(USER_FULL_NAME, userFullName);
+		entity.put(USER_PASSWORD, userPassword);
+		entity.put(USER_TYPE, userType);
 	}
 	
-	public String getUserName() {
-		return entity.getString("userName");
-	}
+	public String getUserName() { return entity.getString(USER_NAME); }
+	public void setUserName(String userName) { entity.put(USER_NAME, userName); }
 
-	public void setUserName(String userName) {
-		entity.put("userName", userName);
-	}
+	public String getUserFullName() { return entity.getString(USER_FULL_NAME); }
+	public void setUserFullName(String userFullName) { entity.put(USER_FULL_NAME, userFullName); }
 
-	public String getUserFullName() {
-		return entity.getString("userFullName");
-	}
+	public String getUserPassword() { return entity.getString(USER_PASSWORD); }
+	public void setUserPassword(String userPassword) { entity.put(USER_PASSWORD, userPassword); }
 
-	public void setUserFullName(String userFullName) {
-		entity.put("userFullName", userFullName);
-	}
-
-	public String getUserPassword() {
-		return entity.getString("userPassword");
-	}
-
-	public void setUserPassword(String userPassword) {
-		entity.put("userPassword", userPassword);
-	}
-
-	public String getUserType() {
-		return entity.getString("userType");
-	}
-
-	public void setUserType(String userType) {
-		entity.put("userType", userType);
-	}
+	public String getUserType() { return entity.getString(USER_TYPE); }
+	public void setUserType(String userType) { entity.put(USER_TYPE, userType); }
 }

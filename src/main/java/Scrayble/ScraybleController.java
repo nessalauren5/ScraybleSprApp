@@ -38,7 +38,12 @@ public class ScraybleController {
 			log.error(e.getMessage());
 			log.error(e.getStackTrace());
 		}
-		if(billId.equalsIgnoreCase("")) { return; }
+		if(billId.equalsIgnoreCase("")) {
+        	log.debug("Gatech Proxy empty string for billId. It must be down?");
+			log.debug("Assign a default Bill ID");
+			billId = "99999";//5 9s, like Scrayble Uptime :)
+			log.debug("Bill ID: " + billId);
+		}
 		
 		//Update patient
 		p.setId(billId);
@@ -175,9 +180,20 @@ public class ScraybleController {
     @RequestMapping(value = "/Patient/{Id}", method=RequestMethod.GET)
 	public String getPatient(@PathVariable("Id") String id) {
     	log.info("GET RequestMapping: /Patient/"+id);
-    	String json = GaTechProxy.get("Patient", id);
-    	log.debug("Gatech Proxy returned this JSON: " + json);
-    	Patient patientFromFHIR = new Patient(json);
+    	Patient patientFromFHIR = null;
+    	try {
+    		String json = GaTechProxy.get("Patient", id);
+    		if(!json.equalsIgnoreCase("")) {
+            	log.debug("Gatech Proxy returned this JSON: " + json);
+            	patientFromFHIR = new Patient(json);
+    		} else {
+            	log.debug("Gatech Proxy returned this empty string JSON. It must be down?");
+    		}
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			log.error(e.getStackTrace());
+		}
+    	
     	log.info("Patient FHIR object created.");
     	Patient patientFromLocal = patients.get(id);
     	log.info("Patient Scrayble object created.");
@@ -187,7 +203,10 @@ public class ScraybleController {
         	return patientFromLocal.getJSONObject().toString();
     	}
 		log.info("Patient Scrayble & FHIR NOT synced.");
-       	return patientFromFHIR.getJSONObject().toString();
+       	if(patientFromFHIR != null) {
+    		return patientFromFHIR.getJSONObject().toString();
+       	}
+		return "{}";
     }
 
 	@CrossOrigin

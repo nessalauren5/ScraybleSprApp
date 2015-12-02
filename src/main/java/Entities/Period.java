@@ -1,23 +1,14 @@
 package Entities;
 
-public class Period {
+public class Period extends Entity {
 
-	private String start;
-	private String end;
+	private static final String END = "end";
+	private static final String START = "start";
+	private static final String PERIOD = "Period";
 
 	public Period(String start, String end) {
-		this.start = start;
-		this.end = end;
+		super(PERIOD, null, null);
+		entity.put(START, start);
+		entity.put(END, end);
 	}
-
-	public String prettyPrint() {
-		return "Start: " + this.start
-		+ " End: " + this.end;
-	};
-
-	public String jsonPrint() {
-		return "{ start: " + this.start
-				+ ", " + "end: " + this.end
-				+ "}";
-	};
 }

@@ -32,14 +32,6 @@ public class Patient extends Entity {
 		super(null, null, json);	
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 	public void sync(Patient patientFromFHIR) {
 		if(patientFromFHIR == null) { return; }
 		JSONObject text = patientFromFHIR.getText();
@@ -66,11 +58,9 @@ public class Patient extends Entity {
 	public String getBirthDate() { return super.entity.getString(BIRTH_DATE); }
 	public boolean isActive() { return super.entity.getBoolean(ACTIVE); }
 
-	public PatientHistory getPatientHistory() {
-		return patientHistory;
-	}
+	public User getUser() { return user; }
+	public void setUser(User user) { this.user = user; }
 
-	public void setPatientHistory(PatientHistory patientHistory) {
-		this.patientHistory = patientHistory;
-	}
+	public PatientHistory getPatientHistory() { return patientHistory; }
+	public void setPatientHistory(PatientHistory patientHistory) { this.patientHistory = patientHistory; }
 }

@@ -2,8 +2,10 @@ package Entities;
 
 import org.json.JSONObject;
 
-public abstract class Entity {
+public class Entity {
 
+	private static final String ID = "id";
+	private static final String RESOURCE_TYPE = "resourceType";
 	protected JSONObject entity;
 	
 	public Entity(String resourceType, String id, String json) {
@@ -11,22 +13,22 @@ public abstract class Entity {
 			entity = new JSONObject(json);
 		} else {
 			entity = new JSONObject();
-			entity.put("resourceType", resourceType);
+			entity.put(RESOURCE_TYPE, resourceType);
 			setId(id);
 		}
 	}
 	
 	public String getResourceType() {
-		return entity.getString("resourceType");
+		return entity.getString(RESOURCE_TYPE);
 	}
 	
 	public String getId() {
-		return entity.getString("id");
+		return entity.getString(ID);
 	}
 	
 	public void setId(String id) {
 		if(id != "" && id != null) {
-			entity.put("id", id);
+			entity.put(ID, id);
 		}
 	}
 	
