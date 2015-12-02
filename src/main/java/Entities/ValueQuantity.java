@@ -1,30 +1,23 @@
 package Entities;
 
+import org.json.JSONObject;
+
 public class ValueQuantity {
-	private double value;
-	private String units;
-	private String system;
-	private String code;
 
+	private static final String CODE = "code";
+	private static final String SYSTEM = "system";
+	private static final String UNITS = "units";
+	private static final String VALUE = "value";
+	
+	private JSONObject entity;
+	
 	public ValueQuantity(double value, String units, String system, String code) {
-		this.value = value;
-		this.units = units;
-		this.system = system;
-		this.code = code;
+		entity.put(VALUE, value);
+		entity.put(UNITS, units);
+		entity.put(SYSTEM, system);
+		entity.put(CODE, code);
 	}
-
-	public String prettyPrint() {
-		return "Value: " + this.value
-				+ " Units: " + this.units
-				+ " System: " + this.system
-				+ " Code: " + this.code;
-	}
-			
-	public String jsonPrint() {
-		return "{ value: " + this.value
-			+ ", " + "units: " + this.units
-			+ ", " + "system: " + this.system
-			+ ", " + "code: " + this.code
-			+ "}";
+	public JSONObject getJSONObject() {
+		return entity;
 	}
 }

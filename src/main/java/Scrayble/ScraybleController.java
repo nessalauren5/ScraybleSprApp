@@ -32,17 +32,17 @@ public class ScraybleController {
 		String billId = "";
 		try {
 			billId = GaTechProxy.post(p);
-			log.debug("Bill ID: " + billId);
+			log.info("Bill ID: " + billId);
 				
 		} catch (Exception e) {
 			log.error(e.getMessage());
 			log.error(e.getStackTrace());
 		}
 		if(billId.equalsIgnoreCase("")) {
-        	log.debug("Gatech Proxy empty string for billId. It must be down?");
-			log.debug("Assign a default Bill ID");
+        	log.info("Gatech Proxy empty string for billId. It must be down?");
+			log.info("Assign a default Bill ID");
 			billId = "99999";//5 9s, like Scrayble Uptime :)
-			log.debug("Bill ID: " + billId);
+			log.info("Bill ID: " + billId);
 		}
 		
 		//Update patient
@@ -138,14 +138,50 @@ public class ScraybleController {
     @RequestMapping(value = "/Condition/{Id}", method=RequestMethod.GET)
 	public String getCondition(@PathVariable("Id") String id) {
 		log.info("GET RequestMapping: /Condition/"+id);
-    	return "Condition: " + id;
+    	Condition conditionFromFHIR = null;
+    	try {
+    		String json = GaTechProxy.get("Condition", id);
+    		if(!json.equalsIgnoreCase("")) {
+            	log.info("Gatech Proxy returned this JSON: " + json);
+            	conditionFromFHIR = new Condition(json);
+            	log.info("Condition FHIR object created.");
+    		} else {
+            	log.info("Gatech Proxy returned this empty string JSON. It must be down?");
+    		}
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			log.error(e.getStackTrace());
+		}
+    	
+       	if(conditionFromFHIR != null) {
+    		return conditionFromFHIR.getJSONObject().toString();
+       	}
+		return "{}";
     }
 
 	@CrossOrigin
     @RequestMapping(value = "/Encounter/{Id}", method=RequestMethod.GET)
 	public String getEncounter(@PathVariable("Id") String id) {
 		log.info("GET RequestMapping: /Encounter/"+id);
-    	return "Encounter: " + id;
+    	Encounter encounterFromFHIR = null;
+    	try {
+    		String json = GaTechProxy.get("Encounter", id);
+    		if(!json.equalsIgnoreCase("")) {
+            	log.info("Gatech Proxy returned this JSON: " + json);
+            	encounterFromFHIR = new Encounter(json);
+            	log.info("Encounter FHIR object created.");
+    		} else {
+            	log.info("Gatech Proxy returned this empty string JSON. It must be down?");
+    		}
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			log.error(e.getStackTrace());
+		}
+    	
+       	if(encounterFromFHIR != null) {
+    		return encounterFromFHIR.getJSONObject().toString();
+       	}
+		return "{}";
     }
 
 	@CrossOrigin
@@ -173,7 +209,25 @@ public class ScraybleController {
     @RequestMapping(value = "/Observation/{Id}", method=RequestMethod.GET)
 	public String getObservation(@PathVariable("Id") String id) {
     	log.info("GET RequestMapping: /Observation/"+id);
-    	return "Observation: " + id;
+    	Observation observationFromFHIR = null;
+    	try {
+    		String json = GaTechProxy.get("Observation", id);
+    		if(!json.equalsIgnoreCase("")) {
+            	log.info("Gatech Proxy returned this JSON: " + json);
+            	observationFromFHIR = new Observation(json);
+            	log.info("Observation FHIR object created.");
+    		} else {
+            	log.info("Gatech Proxy returned this empty string JSON. It must be down?");
+    		}
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			log.error(e.getStackTrace());
+		}
+    	
+       	if(observationFromFHIR != null) {
+    		return observationFromFHIR.getJSONObject().toString();
+       	}
+		return "{}";
     }
 
 	@CrossOrigin
@@ -184,17 +238,17 @@ public class ScraybleController {
     	try {
     		String json = GaTechProxy.get("Patient", id);
     		if(!json.equalsIgnoreCase("")) {
-            	log.debug("Gatech Proxy returned this JSON: " + json);
+            	log.info("Gatech Proxy returned this JSON: " + json);
             	patientFromFHIR = new Patient(json);
+            	log.info("Patient FHIR object created.");
     		} else {
-            	log.debug("Gatech Proxy returned this empty string JSON. It must be down?");
+            	log.info("Gatech Proxy returned this empty string JSON. It must be down?");
     		}
 		} catch (Exception e) {
 			log.error(e.getMessage());
 			log.error(e.getStackTrace());
 		}
     	
-    	log.info("Patient FHIR object created.");
     	Patient patientFromLocal = patients.get(id);
     	log.info("Patient Scrayble object created.");
     	if(patientFromLocal != null) {
@@ -231,6 +285,14 @@ public class ScraybleController {
     	return "{}";
     }
 
+	@CrossOrigin
+    @RequestMapping(value = "/Patient", method=RequestMethod.POST)
+	public @ResponseBody String createPatientHistory(Patient p) {
+    	log.info("POST RequestMapping: /Patient");
+    	String id = GaTechProxy.post(p);
+    	return id;
+    }
+    
 	@CrossOrigin
     @RequestMapping(value = "/PatientHistory", method=RequestMethod.POST)
 	public @ResponseBody PatientHistory createPatientHistory(PatientHistory ph, int patientId) {
