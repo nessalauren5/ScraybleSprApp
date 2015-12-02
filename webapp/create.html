@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Scrayble HCC</title>
+
+  <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link href="css/freelancer.css" rel="stylesheet">
+
+  <!-- Custom Fonts -->
+  <link rel="stylesheet" type="text/css" media="all" href="css/styles.css">
+  <link rel="stylesheet" type="text/css" media="all" href="css/switchery.min.css">
+  <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <link rel="icon" href="img/favicon.ico">
+
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body id="page-top" class="index">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header page-scroll">
+        <a class="navbar-brand" href="#page-top">
+          <i class="fa fa-heartbeat"></i> Scrayble
+        </a>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown">
+              <img src="img/profile.png" class="img-circle special-img"> Dr.Banksy, Ph.D <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="profile.html"><i class="fa fa-cog"></i> Account</a></li>
+                <li class="divider"></li>
+                <li><a href="index.html"><i class="fa fa-sign-out"></i> Sign-out</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-left">
+            <li class="hidden">
+              <a href="#page-top"></a>
+            </li>
+            <li class="page-scroll">
+              <a href="home.html">Home</a>
+            </li>
+            <li class="page-scroll">
+              <a href="search.html">Search</a>
+            </li>
+            <li class="page-scroll active">
+              <a href="create.html">Create Plan</a>
+            </li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Header
+    <header>
+    <div class="container">
+    <div class="row">
+    <div class="col-lg-12">
+    <div class="intro-text">
+    <span class="name">Scrayble Health Care Coordination</span>
+    <hr class="star-light">
+  </div>
+</div>
+</div>
+</div>
+</header>
+-->
+
+<section style="padding-top:100px;  ">
+
+  <div class="row">
+    <div class="text-center"><h1>Patient Care Plan</h1></div>
+  </div>
+  <div class="row">
+    <div class="form-crumbs text-center">
+      <div class="col-sm-1 col-sm-offset-4">
+        <div class="row">Patient Info</div>
+        <div class="clearfix" style="height: 10px;clear: both;"></div>
+
+        <div class="row"><i id="icon-1" class="fa fa-2x fa-heart"></i></div>
+      </div>
+      <div class="col-sm-1">
+        <div class="row">Health History</div>
+        <div class="clearfix" style="height: 10px;clear: both;"></div>
+
+        <div class="row"><i id="icon-2" class="fa fa-2x fa-heart-o"></i></div>
+      </div>
+      <div class="col-sm-1">
+        <div class="row">Care Plan</div>
+        <div class="clearfix" style="height: 10px;clear: both;"></div>
+
+        <div class="row"><i id="icon-3" class="fa fa-2x fa-heart-o"></i></div>
+      </div>
+      <div class="col-sm-1">
+        <div class="row">Notes</div>
+        <div class="clearfix" style="height: 10px;clear: both;"></div>
+
+        <div class="row"><i id="icon-4" class="fa fa-2x fa-heart-o"></i></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page 1 of Form -->
+  <div id="pcp1" class="frm">
+    <fieldset>
+      <div id="wrapper" class="col-lg-offset-1 col-lg-9">
+        <h2>Patient Info</h2>
+        <p> Click any field to edit patient information.</p>
+        <form name="patientinfo" id="createpcp" method="post" action="yourpage.html">
+          <!-- First Row -->
+          <div class="col-2">
+            <label>
+              Name
+              <input placeholder="What is the patient's full name?" id="name" name="name" tabindex="1">
+            </label>
+          </div>
+          <div class="col-4">
+            <label>
+              Date of Birth
+              <input placeholder="MM/DD/YYYY" id="bday" name="bday" tabindex="2">
+            </label>
+          </div>
+          <div class="col-4">
+            <label>
+              Physician
+              <input placeholder="Enter physicians full name" id="pname" name="pname" tabindex="5">
+            </label>
+          </div>
+
+          <!-- Second Row -->
+          <div class="col-4">
+            <label>
+              Gender
+              <input placeholder="Patient's Gender" id="address" name="address" tabindex="4">
+            </label>
+          </div>
+          <div class="col-2">
+            <label>
+              Mailing Address
+              <input placeholder="Patient's full address" id="address" name="address" tabindex="4">
+            </label>
+          </div>
+          <div class="col-4">
+            <label>
+              Home Health Aid
+              <input placeholder="Enter HHA's full name" id="aid" name="aid" tabindex="9">
+            </label>
+          </div>
+
+          <!-- Third Row -->
+          <div class="col-4">
+            <label>
+              Employer
+              <input placeholder="Patient's Employer" id="pemp" name="pemp" tabindex="3">
+            </label>
+          </div>
+          <div class="col-2">
+            <label>
+              Employer's Address
+              <input placeholder="Patient's Employer's Address" id="pemp" name="pemp" tabindex="3">
+            </label>
+          </div>
+          <div class="col-4">
+            <label>
+              Phone Number
+              <input placeholder="What is the best # to reach the patient?" id="phone" name="phone" tabindex="6">
+            </label>
+          </div>
+          <div class="col-4">
+            <label>
+              Emergency Contact
+              <input placeholder="Emergency Contact Name" id="pemp" name="pemp" tabindex="3">
+            </label>
+          </div>
+          <div class="col-2">
+            <label>
+              Emergency Contact Address
+              <input placeholder="Emergency Contact Address" id="pemp" name="pemp" tabindex="3">
+            </label>
+          </div>
+          <div class="row" style="width:100%;">
+            <div class="form-group">
+              <div class="col-lg-10 col-lg-offset-2">
+                <!-- open1 is given in the class that is binded with the click event -->
+                <button class="btn btn-success open1 text-right" type="button">Next <span class="fa fa-arrow-right"></span></button>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+
+    </fieldset>
+
+  </div>
+
+  <!-- Page 2 of Form -->
+
+  <div id="pcp2" class="frm" style="display:none;">
+    <fieldset>
+      <div id="wrapper" class="col-lg-offset-1 col-lg-9">
+        <h2>Patient Health</h2>
+        <form name="patienthealth" id="createpcp" method="post" action="yourpage.html">
+          <div class="col-4">
+            <label>
+              Height
+              <input placeholder="Patient Height" id="height" name="height" tabindex="4">
+            </label>
+          </div>
+          <div class="col-4">
+            <label>
+              Weight
+              <input placeholder="Patient Weight (lbs)" id="weight" name="weight" tabindex="4">
+            </label>
+          </div>
+          <div class="col-4">
+            <label>Tobacco?</label>
+            <center style="position:relative; margin-bottom:8px;"><input type="checkbox" class="js-switch"></center>
+          </div>
+          <div class="col-4 switch">
+            <label>Alcohol?</label>
+            <center style="position:relative;margin-bottom:8px;"><input type="checkbox" class="js-switch"></center>
+          </div>
+          <div class="col-2">
+            <label>
+              Medications
+              <input placeholder="List of Medications" id="meds" name="meds" tabindex="6">
+            </label>
+          </div>
+
+          <div class="col-2">
+            <label>
+              Allergies
+              <input placeholder="List of allergies" id="allergies" name="allergies" tabindex="6">
+            </label>
+          </div>
+          <div class="col-4">
+            <label>
+              Caffeine?
+            </label>
+            <center style="position:relative; margin-bottom:8px;"><input type="checkbox" class="js-switch"></center>
+          </div>
+          <div class="col-4">
+            <label>Previous Surgeries?</label>
+            <center style="position:relative; margin-bottom:8px;"><input type="checkbox" class="js-switch"></center>
+          </div>
+          <div class="col-4 switch">
+            <label>Previous Hospitilizations?</label>
+            <center style="position:relative;margin-bottom:8px;"><input type="checkbox" class="js-switch"></center>
+          </div>
+        </form>
+      </div>
+
+      <div class="form-group">
+        <div class="col-lg-10 col-lg-offset-2">
+          <button class="btn btn-primary back2 text-right" type="button">Back <span class="fa fa-arrow-left"></span></button>
+          <!-- open1 is given in the class that is binded with the click event -->
+          <button class="btn btn-success open2 text-right" type="button">Next <span class="fa fa-arrow-right"></span></button>
+        </div>
+      </div>
+
+    </fieldset>
+
+  </div>
+
+
+
+
+  <!-- Page 3 of Form -->
+  <div id="pcp3" class="frm" style="display:none;">
+    <fieldset>
+      <legend>Step 3 of 3</legend>
+      <div id="wrapper" class="col-lg-offset-1 col-lg-9">
+        <h2>Care Plan</h2>
+        <form name="careplan" id="createpcp" method="post" action="yourpage.html">
+          <div class="col-4">
+            <label>PT Evaluation?</label>
+            <center style="position:relative; margin-bottom:8px;"><input type="checkbox" class="js-switch"></center>
+          </div>
+          <div class="col-4">
+            <label>
+              Evaluation Date
+              <input placeholder="DD/MM/YY" id="experience" name="experience" tabindex="7">
+            </label>
+          </div>
+          <div class="col-4 switch">
+            <label>Transfer Training?</label>
+            <center style="position:relative;margin-bottom:8px;"><input type="checkbox" class="js-switch"></center>
+          </div>
+          <div class="col-4 switch">
+            <label>Home Exercise Program?</label>
+            <center style="position:relative;margin-bottom:8px;"><input type="checkbox" class="js-switch"></center>
+          </div>
+          <div class="col-4 switch">
+            <label>Gait Training?</label>
+            <center style="position:relative;margin-bottom:8px;"><input type="checkbox" class="js-switch"></center>
+          </div>
+          <div class="col-4 switch">
+            <label>Cardiopulminary Treatment?</label>
+            <center style="position:relative;margin-bottom:8px;"><input type="checkbox" class="js-switch"></center>
+          </div>
+          <div class="col-4 switch">
+            <label>Ultrasound?</label>
+            <center style="position:relative;margin-bottom:8px;"><input type="checkbox" class="js-switch"></center>
+          </div>
+          <div class="col-4 switch">
+            <label>Electro Treatment?</label>
+            <center style="position:relative;margin-bottom:8px;"><input type="checkbox" class="js-switch"></center>
+          </div>
+          <div class="col-4 switch">
+            <label>Prosthetic Training?</label>
+            <center style="position:relative;margin-bottom:8px;"><input type="checkbox" class="js-switch"></center>
+          </div>
+          <div class="col-4 switch">
+            <label>Muscle Re-education?</label>
+            <center style="position:relative;margin-bottom:8px;"><input type="checkbox" class="js-switch"></center>
+          </div>
+          <div class="col-4 switch">
+            <label>Evaluation of PCP?</label>
+            <center style="position:relative;margin-bottom:8px;"><input type="checkbox" class="js-switch"></center>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+              <!-- Unique class name -->
+              <button class="btn btn-primary back3" type="button"><span class="fa fa-arrow-left"></span> Back</button>
+              <!-- Unique class name -->
+
+              <button class="btn btn-success open3" type="button">Next</button>
+
+              <img src="spinner.gif" alt="" id="loader" style="display: none">
+            </div>
+          </div>
+        </form>
+      </fieldset>
+    </div>
+
+    <div id="pcp4" class="frm" style="display:none;">
+      <fieldset>
+
+        <div id="wrapper" class="col-lg-offset-1 col-lg-9">
+          <h2>Notes</h2>
+          <form name="careplan" id="createpcp" method="post" action="yourpage.html">
+            <div style="width:100%;">
+              <label>Notes
+                <textarea class="form-control" rows="5" id="notes" name="notes" placeholder="Enter Notes Here."></textarea>
+              </label>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-10 col-lg-offset-2">
+                <!-- Unique class name -->
+                <button class="btn btn-primary back4" type="button"><span class="fa fa-arrow-left"></span> Back</button>
+                <!-- Unique class name -->
+
+                <button class="btn btn-success open4" type="submit">Create Plan</button>
+
+                <img src="spinner.gif" alt="" id="loader" style="display: none">
+              </div>
+            </div>
+          </form>
+        </fieldset>
+      </div>
+
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="text-center">
+      <div class="footer-above">
+        <div class="container">
+          <div class="row">
+          </div>
+        </div>
+      </div>
+      <div class="footer-below">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              Copyright &copy; Scrayble 2015
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll visible-xs visible-sm">
+      <a class="btn btn-primary" href="#page-top">
+        <i class="fa fa-chevron-up"></i>
+      </a>
+    </div>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- JS for form -->
+    <script type="text/javascript" src="js/switchery.min.js"></script>
+    <!-- Form Validation -->
+    <script type="text/javascript" src="js/jquery.validate.js"></script>
+
+    <!-- Form Next and Previous -->
+    <script type="text/javascript">
+    jQuery().ready(function() {
+
+      var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+
+      elems.forEach(function(html) {
+        var switchery = new Switchery(html);
+      });
+
+      var v = jQuery("#createpcp").validate({
+        rules: {
+          uname: {
+            required: true,
+            minlength: 2,
+            maxlength: 16
+          }
+        },
+        errorElement: "span",
+        errorClass: "help-inline",
+      });
+      var v2 = jQuery("#patienthealth").validate({
+        rules: {
+          uname: {
+            required: true,
+            minlength: 2,
+            maxlength: 16
+          }
+        },
+        errorElement: "span",
+        errorClass: "help-inline",
+      });
+      var v3 = jQuery("#patientplan").validate({
+        rules: {
+          uname: {
+            required: true,
+            minlength: 2,
+            maxlength: 16
+          }
+        },
+        errorElement: "span",
+        errorClass: "help-inline",
+      });
+
+      // Binding next button on first step
+      $(".open1").click(function() {
+        if (v.form()) {
+          $(".frm").hide("fast");
+          $("#pcp2").show("slow");
+          //heart beat previous icon
+          $("#icon-1").removeClass("fa-heart").addClass('fa-heartbeat');
+          //fill icon of next step
+          $("#icon-2").removeClass('fa-heart-o').addClass('fa-heart');
+        }
+      });
+
+      // Binding next button on second step
+      $(".open2").click(function() {
+        if (v.form()) {
+          $(".frm").hide("fast");
+          $("#pcp3").show("slow");
+          //heart beat previous icon
+          $("#icon-2").removeClass("fa-heart").addClass('fa-heartbeat');
+          //fill icon of next step
+          $("#icon-3").removeClass('fa-heart-o').addClass('fa-heart');
+        }
+      });
+
+      // Binding next button on third step
+      $(".open3").click(function() {
+        if (v.form()) {
+          $(".frm").hide("fast");
+          $("#pcp4").show("slow");
+          //heart beat previous icon
+          $("#icon-3").removeClass("fa-heart").addClass('fa-heartbeat');
+          //fill icon of next step
+          $("#icon-4").removeClass('fa-heart-o').addClass('fa-heart');
+        }
+      });
+
+      // Binding back button on second step
+      $(".back2").click(function() {
+        $(".frm").hide("fast");
+        $("#pcp1").show("slow");
+
+        $("#icon-1").removeClass("fa-heartbeat").addClass('fa-heart');
+        $("#icon-2").removeClass('fa-heart').addClass('fa-heart-o');
+      });
+
+      // Binding back button on third step
+      $(".back3").click(function() {
+        $(".frm").hide("fast");
+        $("#pcp2").show("slow");
+
+        $("#icon-2").removeClass("fa-heartbeat").addClass('fa-heart');
+        $("#icon-3").removeClass('fa-heart').addClass('fa-heart-o');
+      });
+
+      // Binding back button on fourth step
+      $(".back4").click(function() {
+        $(".frm").hide("fast");
+        $("#pcp3").show("slow");
+
+        $("#icon-3").removeClass("fa-heartbeat").addClass('fa-heart');
+        $("#icon-4").removeClass('fa-heart').addClass('fa-heart-o');
+      });
+
+      $(".open4").click(function() {
+        if (v.form()) {
+          // optional
+          // used delay form submission for a seccond and show a loader image
+          $("#loader").show();
+          setTimeout(function(){
+            $("#createpcp").html('<h2>Thanks for your time.</h2>');
+          }, 1000);
+          // Remove this if you are not using ajax method for submitting values
+          return false;
+        }
+      });
+    });
+    </script>
+
+  </body>
+  </html>
