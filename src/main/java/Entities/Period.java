@@ -1,14 +1,19 @@
 package Entities;
 
-public class Period extends Entity {
+import org.json.JSONObject;
+
+public class Period {
 
 	private static final String END = "end";
 	private static final String START = "start";
-	private static final String PERIOD = "Period";
-
+	private JSONObject entity;
+	
 	public Period(String start, String end) {
-		super(PERIOD, null, null);
+		entity = new JSONObject();
 		entity.put(START, start);
 		entity.put(END, end);
+	}
+	public JSONObject getJSONObject() {
+		return entity;
 	}
 }

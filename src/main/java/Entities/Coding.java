@@ -10,6 +10,7 @@ public class Coding {
 	private JSONObject entity;
 	
 	public Coding(String system, String code, String display) {
+		entity = new JSONObject();
 		entity.put(SYSTEM, system);
 		entity.put(CODE, code);
 		entity.put(DISPLAY, display);

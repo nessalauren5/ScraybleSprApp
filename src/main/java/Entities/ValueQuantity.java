@@ -12,6 +12,7 @@ public class ValueQuantity {
 	private JSONObject entity;
 	
 	public ValueQuantity(double value, String units, String system, String code) {
+		entity = new JSONObject();
 		entity.put(VALUE, value);
 		entity.put(UNITS, units);
 		entity.put(SYSTEM, system);

@@ -8,6 +8,7 @@ public class Reference {
 	private JSONObject entity;
 
 	public Reference(String reference) {
+		entity = new JSONObject();
 		entity.put(REFERENCE, reference);
 	}
 	

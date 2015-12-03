@@ -1,8 +1,9 @@
 package Scrayble;
 
+import java.util.ArrayList;
+
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +19,11 @@ public class ScraybleController {
 	private Users users = Users.GetUsers();
 	private Patients patients = Patients.GetPatients();
 	private CarePlans carePlans = CarePlans.GetCarePlans();
+	private Encounters encounters = Encounters.GetEncounters();
+	private Observations observations = Observations.GetObservations();
+	private Conditions conditions = Conditions.GetConditions();
+	private Medications medications = Medications.GetMedications();
+	
 	private static Logger log = Logger.getLogger(ScraybleController.class.getName());
 	
 	private void initializeDummyData() {
@@ -89,6 +95,41 @@ public class ScraybleController {
 		
 		//Update Care Plans
 		carePlans.put("CarePlan" + billId, cp);
+		
+		//Create an Observation for Bill
+		//Create a Medication for Bill
+		//Create an Encounter for Bill
+		String encounterId = "";
+		//Create a Condition for Bill
+		Condition c = new Condition("Condition", null, billId,
+				encounterId, "5",
+				new Coding("http://snomed.info/sct", "230265002", "Familial Alzheimer's disease of early onset"),
+				"Familial Alzheimer's disease of early onset, SNOMED-CT, 230265002",
+				"confirmed",
+				"2002-05-26T00:00:00-04:00");
+		String conditionId = "";
+		try {
+			conditionId = GaTechProxy.post(c);
+			log.info("Alzheimers Condition ID: " + conditionId);
+				
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			log.error(e.getStackTrace());
+		}
+		if(conditionId.equalsIgnoreCase("")) {
+        	log.info("Gatech Proxy empty string for conditionId. It must be down?");
+			log.info("Assign a default Condition");
+			conditionId = "99999";//5 9s, like Scrayble Uptime :)
+			log.info("Condition ID: " + conditionId);
+		}
+		
+		//Update Condition
+		c.setId(conditionId);
+
+		//Update Conditions
+		ArrayList<Condition> conds = new ArrayList<Condition>();
+		conds.add(c);
+		conditions.put(billId, conds);
 	}
 
 	public ScraybleController() {
@@ -285,6 +326,22 @@ public class ScraybleController {
     	return "{}";
     }
 
+	@CrossOrigin
+    @RequestMapping(value = "/Patient/{Id}/Conditions", method=RequestMethod.GET)
+	public String getPatientConditions(@PathVariable("Id") String id) {
+    	log.info("GET RequestMapping: /Patient/"+id+"/Conditions");
+    	ArrayList<Condition> conds = conditions.get(id);
+    	StringBuilder sb = new StringBuilder();
+    	for (Condition cond :conds) {
+    		sb.append(cond.getJSONObject().toString()).append(" ");
+    	}
+    	if(sb.toString().equalsIgnoreCase("")) {
+    		return "{}";	
+    	} else {
+    		return sb.toString();
+    	}
+    }
+	
 	@CrossOrigin
     @RequestMapping(value = "/Patient", method=RequestMethod.POST)
 	public @ResponseBody String createPatientHistory(Patient p) {
