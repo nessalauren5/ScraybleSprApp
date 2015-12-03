@@ -116,7 +116,7 @@
                 <img src="http://placehold.it/150x150" />
               </div>
                 <div class="col-md-10">
-                    <h3 id="name"></h3>
+                    <h3 id="name">Megan Joanne Hutser</h3>
                     <h5>Home Health Aid: Sandy Patterson</h5>
                     <h5>Medical ID: 764793-34</h5>
                 </div>
@@ -233,7 +233,7 @@
       url: "http://ec2-54-172-133-170.compute-1.amazonaws.com:8080/Patient/1",
       dataType: 'json'
         }).always(function(data){
-          $('#name').html(data.name[0].given[0] + " " + data.name[0].family[0]);
+          //$('#name').html(data.name[0].given[0] + " " + data.name[0].family[0]);
         });
     });
 
