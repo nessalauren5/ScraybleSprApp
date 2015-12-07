@@ -345,7 +345,7 @@ public class ScraybleController {
 	@CrossOrigin
     @RequestMapping(value = "/Patient", method=RequestMethod.POST)
 	public @ResponseBody String createPatientHistory(Patient p) {
-    	log.info("POST RequestMapping: /Patient");
+    	log.info("POST RequestMapping: /Patient for " + p.getId());
     	String id = GaTechProxy.post(p);
     	return id;
     }
@@ -353,14 +353,24 @@ public class ScraybleController {
 	@CrossOrigin
     @RequestMapping(value = "/PatientHistory", method=RequestMethod.POST)
 	public @ResponseBody PatientHistory createPatientHistory(PatientHistory ph, int patientId) {
-    	log.info("POST RequestMapping: /PatientHistory");
+    	log.info("POST RequestMapping: /PatientHistory for " + patientId);
+		Patient p = patients.get(Integer.toString(patientId));
+		if (p != null) {
+			p.setPatientHistory(ph);
+		}
+		else{
+			p = new Patient(null,Integer.toString(patientId),null,null,null,null,null,true);
+			p.setPatientHistory(ph);
+		}
+		patients.put(Integer.toString(patientId), p);
     	return ph;
     }
     
 	@CrossOrigin
     @RequestMapping(value = "/CarePlan", method=RequestMethod.POST)
 	public @ResponseBody CarePlan createPatient(CarePlan cp, int patientId) {
-    	log.info("POST RequestMapping: /CarePlan");
+    	log.info("POST RequestMapping: /CarePlan for " + patientId);
+		carePlans.put(Integer.toString(patientId), cp);
     	return cp;
     }
  }
