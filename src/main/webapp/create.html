@@ -168,7 +168,7 @@
           <div class="col-4">
             <label>
               Gender
-              <input placeholder="Patient's Gender" id="address" name="address" tabindex="4">
+              <input placeholder="Patient's Gender" id="gender" name="gender" tabindex="4">
             </label>
           </div>
           <div class="col-2">
@@ -194,7 +194,7 @@
           <div class="col-2">
             <label>
               Employer's Address
-              <input placeholder="Patient's Employer's Address" id="pemp" name="pemp" tabindex="3">
+              <input placeholder="Patient's Employer's Address" id="pempAddr" name="pempAddr" tabindex="3">
             </label>
           </div>
           <div class="col-4">
@@ -206,13 +206,13 @@
           <div class="col-4">
             <label>
               Emergency Contact
-              <input placeholder="Emergency Contact Name" id="pemp" name="pemp" tabindex="3">
+              <input placeholder="Emergency Contact Name" id="emerContact" name="emerContact" tabindex="3">
             </label>
           </div>
           <div class="col-2">
             <label>
               Emergency Contact Address
-              <input placeholder="Emergency Contact Address" id="pemp" name="pemp" tabindex="3">
+              <input placeholder="Emergency Contact Address" id="emerAddr" name="emerAddr" tabindex="3">
             </label>
           </div>
           <div class="row" style="width:100%;">
@@ -306,7 +306,6 @@
   <!-- Page 3 of Form -->
   <div id="pcp3" class="frm" style="display:none;">
     <fieldset>
-      <legend>Step 3 of 3</legend>
       <div id="wrapper" class="col-lg-offset-1 col-lg-9">
         <h2>Care Plan</h2>
         <form name="careplan" id="careplan1" method="post" action="yourpage.html">
@@ -498,6 +497,8 @@ jQuery().ready(function() {
       $("#icon-1").removeClass("fa-heart").addClass('fa-heartbeat');
       //fill icon of next step
       $("#icon-2").removeClass('fa-heart-o').addClass('fa-heart');
+       var ptInfo = $('#patientinfo').serialize().replace(/[^&]+=\.?(?:&|$)/g, '');
+        console.log(ptInfo);
     }
   });
 
@@ -510,6 +511,9 @@ jQuery().ready(function() {
       $("#icon-2").removeClass("fa-heart").addClass('fa-heartbeat');
       //fill icon of next step
       $("#icon-3").removeClass('fa-heart-o').addClass('fa-heart');
+        
+       var ptData =  $('#patienthealth').serialize().replace(/[^&]+=\.?(?:&|$)/g, '');
+           console.log(ptData);
     }
   });
 
@@ -523,6 +527,8 @@ jQuery().ready(function() {
       //fill icon of next step
       $("#icon-4").removeClass('fa-heart-o').addClass('fa-heart');
     
+      var ptCp1 = $('#careplan').serialize().replace(/[^&]+=\.?(?:&|$)/g, '');
+         console.log(ptCp1);
   });
 
   // Binding back button on second step
@@ -567,6 +573,8 @@ jQuery().ready(function() {
       });
       $("#createpcp").html('<h2>Thanks for your time.</h2>');
     }, 1000);
+          var ptCp2 = $('#careplan2').serialize().replace(/[^&]+=\.?(?:&|$)/g, '');
+           console.log(ptCp2);
   }
     // Remove this if you are not using ajax method for submitting values
     return false;
