@@ -4,21 +4,21 @@ import java.time.LocalDate;
 
 public class CarePlan extends Entity {
 	
-	private  String NOTES = "notes";
-	private  String ELECTRO_TREATEMENT = "electroTreatement";
-	private  String HOME_EXERCISE_PROGRAM = "homeExerciseProgram";
-	private  String EVAL_OF_PCP = "evalofPcp";
-	private  String ULTRA_SOUND = "ultraSound";
-	private  String TRANSFER_TRAINING = "transferTraining";
-	private  String MUSCLE_REEDUCATION = "muscleReeducation";
-	private  String CARDIO_TREATMENT = "cardioTreatment";
-	private  String PROSTHETIC_TRAINING = "prostheticTraining";
-	private  String GAIT_TRAINING = "gaitTraining";
-	private  String PT_EVAL_DATE = "ptEvalDate";
-	private  String PT_EVAL = "ptEval";
-	private  String HOME_HEALTH_AIDE = "homeHealthAide";
-	private  String PHYSICIAN = "physician";
-	private  String CARE_PLAN = "CarePlan";
+	private static final String NOTES = "notes";
+	private static final String ELECTRO_TREATEMENT = "electroTreatement";
+	private static final String HOME_EXERCISE_PROGRAM = "homeExerciseProgram";
+	private static final String EVAL_OF_PCP = "evalofPcp";
+	private static final String ULTRA_SOUND = "ultraSound";
+	private static final String TRANSFER_TRAINING = "transferTraining";
+	private static final String MUSCLE_REEDUCATION = "muscleReeducation";
+	private static final String CARDIO_TREATMENT = "cardioTreatment";
+	private static final String PROSTHETIC_TRAINING = "prostheticTraining";
+	private static final String GAIT_TRAINING = "gaitTraining";
+	private static final String PT_EVAL_DATE = "ptEvalDate";
+	private static final String PT_EVAL = "ptEval";
+	private static final String HOME_HEALTH_AIDE = "homeHealthAide";
+	private static final String PHYSICIAN = "physician";
+	private static final String CARE_PLAN = "CarePlan";
 
 	private Patient patient;
 	private LocalDate createDate;
